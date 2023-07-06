@@ -57,3 +57,19 @@ def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
     return(mae)
 
 #Controlling the parameter "max_leaf-nodesé helps us stop the tree splitting when the number of nodes reaches the limit we have set
+# compare MAE with differing values of max_leaf_nodes
+for max_leaf_nodes in [5, 50, 500, 5000]:
+    my_mae = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)
+    print("Max leaf nodes: %d  \t\t Mean Absolute Error:  %d" %(max_leaf_nodes, my_mae))
+
+#Using this function we can choose tghe optimal number of nodes within a range of options
+
+
+##############################
+# Another method to get the optimal number of nodes
+candidate_max_leaf_nodes = [5, 25, 50, 100, 250, 500]
+scores = {leaf_size: get_mae(leaf_size, train_X, val_X, train_y, val_y) for leaf_size in candidate_max_leaf_nodes}
+best_tree_size = min(scores, key=scores.get)
+
+###########################
+#Once we have found the best leaf nodes we can skip the splitting part and train using all the training data we have
