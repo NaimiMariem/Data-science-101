@@ -45,3 +45,15 @@ melbourne_model.fit(train_X, train_y)
 # get predicted prices on validation data
 val_predictions = melbourne_model.predict(val_X)
 print(mean_absolute_error(val_y, val_predictions))
+
+########################################
+# The more leafs we ahve in aprediction tree the more the model is overfitted
+
+def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
+    model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=0)
+    model.fit(train_X, train_y)
+    preds_val = model.predict(val_X)
+    mae = mean_absolute_error(val_y, preds_val)
+    return(mae)
+
+#Controlling the parameter "max_leaf-nodesé helps us stop the tree splitting when the number of nodes reaches the limit we have set
