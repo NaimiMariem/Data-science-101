@@ -71,3 +71,20 @@ df.column_name.value_counts()
 mean_feature=df.column_name.mean()
 df.column_name.map( lambda p : p- mean_feature) # In the example we retrive the mean  value of the feature selected from all the corresponding values
 
+###### the function groupby can be used to have an extract with rows that are categorized according to a cerftain feature (column_name) 
+df.groupby("column_name").another_feature()
+#will have an extract of the dataset with rows of unique elements of column_name 
+# in the second column will have the "other feature" for each elements
+#Another example 
+df.groupby('column_name').apply(lambda df: df.column_name_2.iloc[0])
+# Let column_name be= house_type and column_name_2= owner , this case the command line will return the first owner in the dataset in each different type of house
+#####Another groupby() method worth mentioning is agg(), which lets you run a bunch of different functions on your DataFrame simultaneously. 
+######For example, we can generate a simple statistical summary of the dataset as follows:
+df.groupby(['column_name']).feature.agg([len, min, max]) #ofc specify the feature
+#######Another important specification about the groupby function is that it allolws us to have multi_indexes 
+#i.e you can have two rows f rows lool 
+df.groupby(['column_name_1','column_name_2']).feature.agg([functions_list])
+#let column_name_1 be country and column_name_2 be province 
+# will have each feature for each province organized by country !
+## pandas.core.indexes.multi.MultiIndex (type of variable)
+# The problem is, this is hard to adress
