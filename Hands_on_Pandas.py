@@ -83,8 +83,15 @@ df.groupby('column_name').apply(lambda df: df.column_name_2.iloc[0])
 df.groupby(['column_name']).feature.agg([len, min, max]) #ofc specify the feature
 #######Another important specification about the groupby function is that it allolws us to have multi_indexes 
 #i.e you can have two rows f rows lool 
-df.groupby(['column_name_1','column_name_2']).feature.agg([functions_list])
+df_multii=df.groupby(['column_name_1','column_name_2']).feature.agg([functions_list])
 #let column_name_1 be country and column_name_2 be province 
 # will have each feature for each province organized by country !
 ## pandas.core.indexes.multi.MultiIndex (type of variable)
-# The problem is, this is hard to adress
+# The problem is, this is hard to adress elements when we have this system of indexing 
+# So we need to reorganize it 
+df_sorted=df_multi.reset.index()
+#Sorting 
+df_sorted.sort_values(by='column_name')
+#In order to have the higher values first
+df_sorted.sort_values(by='column_name',ascending= False)
+
