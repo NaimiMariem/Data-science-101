@@ -113,3 +113,10 @@ df[pd.isnull(df.column_name)]
 df.column_name.fillna("Unknown") #There are different ways of replacing missing values
 #Replacing a value with another
 df.column_name.replace("value1","value2")
+#######################################
+#Renaming with : rename, set_index..
+df.rename(columns={"column_name_to change":"new_column_name"}) 
+#We can also rename indexes, and we dicts to do so for both columns and rows 
+df.rename(index={0:"row_1", 1: "row_2"})
+#We can also rename the whole indexes
+df.rebame_axis("row_new_name", axis="rows").rename_axis("column_new_name", axis='columns')
