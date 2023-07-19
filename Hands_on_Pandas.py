@@ -95,3 +95,21 @@ df_sorted.sort_values(by='column_name')
 #In order to have the higher values first
 df_sorted.sort_values(by='column_name',ascending= False)
 
+########################################
+##Data type
+########################################
+#The data type for a column in a DataFrame or a Series is known as the dtype
+df.column_name.dtype
+#Return example dype("float64")
+df.dtype #Gives the dtype of every column
+#If a conversion of type makes sense we can do it using astype 
+df.column_name.astype("float64")
+#######################################
+#Missing data 
+#######################################
+#Missing data are given the NaN value (float64 dtype)
+df[pd.isnull(df.column_name)]
+#replacing missing values with another 
+df.column_name.fillna("Unknown") #There are different ways of replacing missing values
+#Replacing a value with another
+df.column_name.replace("value1","value2")
