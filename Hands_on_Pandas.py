@@ -27,7 +27,7 @@ data_two = pd.read_csv("../input/wine-reviews/winemag-data-130k-v2.csv", index_c
 #index_col is important for when the rows were already named with an index list, that helps us avoid creating two
 ##########################
 #To transform a dataframe into a csv file
-data.to_csv("data_file.csv")
+
 ##########################
 #Indexing
 ##########################
@@ -119,4 +119,17 @@ df.rename(columns={"column_name_to change":"new_column_name"})
 #We can also rename indexes, and we dicts to do so for both columns and rows 
 df.rename(index={0:"row_1", 1: "row_2"})
 #We can also rename the whole indexes
-df.rebame_axis("row_new_name", axis="rows").rename_axis("column_new_name", axis='columns')
+df.rename_axis("row_new_name", axis="rows").rename_axis("column_new_name", axis='columns')
+
+
+###########################
+#Merging and combianing 
+###########################
+# In order to do so we can use join() or merge() or concat()
+df_1=pd.read.csv("path")
+df_2=pd.read.csv("path")
+pd.concat([df_1, df_2])
+#If we have the same idex and want to have teh columns of the two databases we can use join 
+left=df_1.set_index(['column_1", "column_2"])
+left.join(right, lsuffix="_suffix_1", rsuffix="_suffix_2")
+data.to_csv("data_file.csv")
